@@ -1,0 +1,54 @@
+/*
+** EPITECH PROJECT, 2019
+** stat.c
+** File description:
+** Thomas Olry's stat.c made the 11/04/2019
+*/
+
+#include "bsq.h"
+
+int len_first_line(char *buffer)
+{
+    int i = 0;
+
+    while (buffer[i] != '\n')
+        i++;
+    return (i);
+}
+
+int nb_column(char *buffer)
+{
+    int i = 0;
+    int len = 0;
+
+    while (buffer[i] != '\n')
+        i++;
+    i++;
+    while (buffer[i] != '\n') {
+        i++;
+        len++;
+    }
+    return (len);
+}
+
+int nb_line(char *buffer)
+{
+    int j = 0;
+
+    for (int i = 0; buffer[i] != '\0'; i++)
+        if (buffer[i] == '\n')
+            j++;
+    return (j - 1);
+}
+
+int get_nb_line(char *buffer)
+{
+    char *str = malloc(sizeof(char) * len_first_line(buffer));
+    int i = 0;
+
+    for (i = 0; buffer[i] != '\n'; i++) {
+        str[i] = buffer[i];
+    }
+    str[i + 1] = '\0';
+    return (my_getnbr(str));
+}
